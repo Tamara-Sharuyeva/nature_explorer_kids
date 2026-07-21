@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'animals_page.dart';
+import 'pages/home/home_page.dart';
+import 'pages/animals/animals_page.dart';
 void main() {
   runApp(const NatureExplorerApp());
 }
