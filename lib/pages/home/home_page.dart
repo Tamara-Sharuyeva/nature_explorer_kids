@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../animals/animals_page.dart';
+import '../birds/birds_page.dart';
+import '../fish/fish_page.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -36,14 +38,28 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 15),
 
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BirdsPage(),
+                  ),
+                );
+              },
               child: const Text("🦜 Птицы"),
             ),
 
             const SizedBox(height: 15),
 
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const FishPage(),
+                  ),
+                );
+              },
               child: const Text("🐟 Рыбы"),
             ),
 
