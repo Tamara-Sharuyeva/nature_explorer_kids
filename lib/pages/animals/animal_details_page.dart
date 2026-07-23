@@ -1,78 +1,253 @@
+
 import 'package:flutter/material.dart';
 import '../../models/animal.dart';
 
 class AnimalDetailsPage extends StatelessWidget {
-  final Animal animal;
+final Animal animal;
 
-  const AnimalDetailsPage({
-    super.key,
-    required this.animal,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(animal.name),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(
-              animal.image,
-              height: 220,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              animal.name,
-              style: const TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              animal.description,
-              style: const TextStyle(fontSize: 18),
-            ),
-            const SizedBox(height: 30),
+AnimalDetailsPage({
+super.key,
+required this.animal,
+});
 
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  // Позже здесь будет воспроизведение звука
-                },
-                icon: const Icon(Icons.volume_up),
-                label: const Text("🔊 Послушать"),
-              ),
-            ),
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+backgroundColor: const Color(0xFFF7F9FC),
+appBar: AppBar(
+backgroundColor: Colors.transparent,
+foregroundColor: Colors.black,
+elevation: 0,
+centerTitle: true,
+title: Text(
+animal.name,
+style: const TextStyle(
+fontWeight: FontWeight.bold,
+fontSize: 26,
+),
+),
+),
+body: SingleChildScrollView(
+padding: const EdgeInsets.all(18),
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.stretch,
+children: [
 
-            const SizedBox(height: 15),
+Card(
+elevation: 8,
+shape: RoundedRectangleBorder(
+borderRadius: BorderRadius.circular(24),
+),
+child: ClipRRect(
+borderRadius: BorderRadius.circular(24),
+child: Image.asset(
+animal.image,
+height: 320,
+fit: BoxFit.contain,
+),
+),
+),
 
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text("Интересный факт"),
-                      content: Text(
-                        "Скоро здесь появится интересный факт о ${animal.name}.",
-                      ),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.lightbulb_outline),
-                label: const Text("💡 Интересный факт"),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+const SizedBox(height: 24),
+
+Text(
+animal.name,
+textAlign: TextAlign.center,
+style: const TextStyle(
+fontSize: 34,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 18),
+
+Text(
+animal.description,
+textAlign: TextAlign.center,
+style: const TextStyle(
+fontSize: 19,
+height: 1.6,
+),
+),
+
+const SizedBox(height: 28),
+
+Card(
+elevation: 3,
+shape: RoundedRectangleBorder(
+borderRadius: BorderRadius.circular(20),
+),
+child: Padding(
+padding: const EdgeInsets.all(18),
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+children: [
+
+const Row(
+children: [
+Icon(Icons.public,color: Colors.green),
+SizedBox(width:8),
+Text(
+"Где живёт",
+style: TextStyle(
+fontSize:18,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+
+const SizedBox(height:8),
+
+Text(
+animal.habitat,
+style: const TextStyle(fontSize:17),
+),
+
+const SizedBox(height:18),
+
+const Row(
+children:[
+Icon(Icons.restaurant,color:Colors.orange),
+SizedBox(width:8),
+Text(
+"Чем питается",
+style: TextStyle(
+fontSize:18,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+
+const SizedBox(height:8),
+
+Text(
+animal.food,
+style: const TextStyle(fontSize:17),
+),
+
+const SizedBox(height:18),
+const Row(
+children: [
+Icon(Icons.straighten, color: Colors.blue),
+SizedBox(width: 8),
+Text(
+"Размер",
+style: TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+
+const SizedBox(height: 8),
+
+Text(
+animal.size,
+style: const TextStyle(fontSize: 17),
+),
+
+const SizedBox(height: 18),
+
+const Row(
+children: [
+Icon(Icons.monitor_weight,
+color: Colors.deepPurple),
+SizedBox(width: 8),
+Text(
+"Вес",
+style: TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+
+const SizedBox(height: 8),
+
+Text(
+animal.weight,
+style: const TextStyle(fontSize: 17),
+),
+],
+),
+),
+),
+
+const SizedBox(height: 25),
+
+Card(
+color: const Color(0xFFFFF8E1),
+elevation: 3,
+shape: RoundedRectangleBorder(
+borderRadius: BorderRadius.circular(20),
+),
+child: Padding(
+padding: const EdgeInsets.all(18),
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+children: [
+const Row(
+children: [
+Icon(Icons.lightbulb,
+color: Colors.orange),
+SizedBox(width: 8),
+Text(
+"Интересные факты",
+style: TextStyle(
+fontSize: 22,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+
+const SizedBox(height: 15),
+
+...animal.facts.map(
+(fact) => Padding(
+padding: const EdgeInsets.only(bottom: 10),
+child: Row(
+crossAxisAlignment:
+CrossAxisAlignment.start,
+children: [
+const Text(
+"• ",
+style: TextStyle(
+fontSize: 20,
+fontWeight: FontWeight.bold,
+),
+),
+Expanded(
+child: Text(
+fact,
+style: const TextStyle(
+fontSize: 17,
+height: 1.5,
+),
+),
+),
+],
+),
+),
+),
+
+],
+),
+),
+),
+
+const SizedBox(height: 30),
+
+
+
+],
+),
+),
+);
+}
 }
