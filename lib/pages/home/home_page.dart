@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../animals/animals_page.dart';
-import '../birds/birds_page.dart';
-import '../fish/fish_page.dart';
+import '../globe/globe_page.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -23,47 +21,21 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
 
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AnimalsPage(),
-                  ),
-                );
-              },
-              child: const Text("🐘 Животные"),
-            ),
-
-            const SizedBox(height: 15),
 
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const BirdsPage(),
+                    builder: (_) => const GlobePage(),
                   ),
                 );
               },
-              child: const Text("🦜 Птицы"),
+              child: const Text(
+                "🌍 Исследовать мир",
+                style: TextStyle(fontSize: 22),
+              ),
             ),
-
-            const SizedBox(height: 15),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FishPage(),
-                  ),
-                );
-              },
-              child: const Text("🐟 Рыбы"),
-            ),
-
-            const SizedBox(height: 15),
 
             ElevatedButton(
               onPressed: () {},

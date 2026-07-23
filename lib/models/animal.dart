@@ -2,7 +2,7 @@ class Animal {
   final String name;
   final String image;
   final String description;
-  final String sound;
+
 
   final String habitat;
   final String food;
@@ -15,7 +15,6 @@ class Animal {
     required this.name,
     required this.image,
     required this.description,
-    required this.sound,
 
     required this.habitat,
     required this.food,
